@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Categorias</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Categorias</h1>
+    <nav>
+        <a href="{{ url_for('nova_categoria') }}">Nova Categoria</a>
+        </nav>    
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for categoria in categorias %}
+                    <tr>
+                        <td>{{ categoria.nome }}</td>
+                        <td>{{ categoria.descricao }}</td>
+                        <td>
+                            <a href="{{ url_for('editar_categoria', id=categoria.id) }}">Editar</a>
+                            <a href="{{ url_for('remover_categoria', id=categoria.id) }}">Remover</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    <a href="{{ url_for('listar_livros') }}">Voltar</a>
+</body>
+</html>

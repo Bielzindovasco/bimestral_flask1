@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='form_style.css') }}">
+</head>
+<body>
+    <h1>{{ title }}</h1>
+    <form method="post">
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome" id="nome" value="{{ autor.nome if autor else '' }}" required>
+        <br>
+        <label for="data_nascimento">Data de Nascimento:</label>
+        <input type="date" name="data_nascimento" id="data_nascimento" value="{{ autor.data_nascimento if autor else '' }}" required>
+        <br>
+        <label for="nacionalidade">Nacionalidade:</label>
+        <input type="text" name="nacionalidade" id="nacionalidade" value="{{ autor.nacionalidade if autor else '' }}" required>
+        <br>
+        <input type="submit" value="Salvar">
+    </form>
+    <a href="{{ url_for('listar_livros') }}">Voltar</a>
+    <a href="{{ url_for('listar_autores') }}">Ver Autores</a>   
+</body>
+</html>

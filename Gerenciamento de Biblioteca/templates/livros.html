@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Livros</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Bem vindo a Biblioteca GIK!</h1>
+<nav>
+        <a href="{{ url_for('novo_livro') }}">Novo Livro</a>
+        <a href="{{ url_for('nova_categoria') }}">Adicionar Categoria</a>
+        <a href="{{ url_for('novo_autor') }}">Adicionar Autor</a>
+        <a href="{{ url_for('novo_emprestimo') }}">Novo Empréstimo</a>
+        <a href="{{ url_for('novo_usuario') }}">Novo Usuário</a>
+    </nav>
+    <table>
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Ano</th>
+                <th>Editora</th>
+                <th>Quantidade</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for livro in livros %}
+                <tr>
+                    <td>{{ livro.titulo }}</td>
+                    <td>{{ livro.ano }}</td>
+                    <td>{{ livro.editora }}</td>
+                    <td>{{ livro.quantidade }}</td>
+                    <td>
+                        <a href="{{ url_for('editar_livro', id=livro.id) }}">Editar</a>
+                        <a href="{{ url_for('remover_livro', id=livro.id) }}">Remover</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </body>
+</html>

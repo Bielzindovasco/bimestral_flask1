@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='form_style.css') }}">
+</head>
+<body>
+    <h1>{{ title }}</h1>
+    <form method="post">
+        <label for="livro">Livro:</label>
+        <select name="livro_id" id="livro">
+            {% for livro in livros %}
+                <option value="{{ livro.id }}" {% if livro.id == emprestimo.livro_id %}selected{% endif %}>{{ livro.titulo }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="usuario">Usuário:</label>
+        <select name="usuario_id" id="usuario">
+            {% for usuario in usuarios %}
+                <option value="{{ usuario.id }}" {% if usuario.id == emprestimo.usuario_id %}selected{% endif %}>{{ usuario.nome }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="data_emprestimo">Data de Empréstimo:</label>
+        <input type="date" name="data_emprestimo" id="data_emprestimo" value="{{ emprestimo.data_emprestimo if emprestimo else '' }}" required>
+        <br>
+        <label for="data_devolucao">Data de Devolução:</label>
+        <input type="date" name="data_devolucao" id="data_devolucao" value="{{ emprestimo.data_devolucao if emprestimo else '' }}">
+        <br>
+        <input type="submit" value="Salvar">
+    </form>
+    <a href="{{ url_for('listar_livros') }}">Voltar</a>
+    <a href="{{ url_for('listar_emprestimos') }}">Ver Emprestimos</a>   
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='form_style.css') }}">
+</head>
+<body>
+    <h1>{{ title }}</h1>
+    <form method="post">
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome" id="nome" value="{{ categoria.nome if categoria else '' }}" required>
+        <br>
+        <label for="descricao">Descrição:</label>
+        <textarea name="descricao" id="descricao" required>{{ categoria.descricao if categoria else '' }}</textarea>
+        <br>
+        <input type="submit" value="Salvar">
+    </form>
+    <a href="{{ url_for('listar_livros') }}">Voltar</a>
+    <a href="{{ url_for('listar_categorias') }}">Ver Categorias</a>   
+</body>
+</html>

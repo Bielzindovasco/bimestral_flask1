@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Empréstimos</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Empréstimos</h1>
+    <nav>
+        <a href="{{ url_for('novo_emprestimo') }}">Novo Empréstimo</a>
+    </nav>
+    <table>
+        <thead>
+            <tr>
+                <th>Livro</th>
+                <th>Usuário</th>
+                <th>Data do Empréstimo</th>
+                <th>Data de Devolução</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for emprestimo in emprestimos %}
+                <tr>
+                    <td>{{ emprestimo.livro }}</td>
+                    <td>{{ emprestimo.usuario }}</td>
+                    <td>{{ emprestimo.data_emprestimo }}</td>
+                    <td>{{ emprestimo.data_devolucao }}</td>
+                    <td>
+                        <a href="{{ url_for('editar_emprestimo', id=emprestimo.id) }}">Editar</a>
+                        <a href="{{ url_for('remover_emprestimo', id=emprestimo.id) }}">Remover</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('listar_livros') }}">Voltar</a>
+</body>
+</html>

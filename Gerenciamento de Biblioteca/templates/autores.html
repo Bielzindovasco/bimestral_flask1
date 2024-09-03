@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Autores</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Autores</h1>
+<nav>
+    <a href="{{ url_for('novo_autor') }}">Novo Autor</a>
+    </nav>    
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Nacionalidade</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for autor in autores %}
+                <tr>
+                    <td>{{ autor.nome }}</td>
+                    <td>{{ autor.nacionalidade }}</td>
+                    <td>
+                        <a href="{{ url_for('editar_autor', id=autor.id) }}">Editar</a>
+                        <a href="{{ url_for('remover_autor', id=autor.id) }}">Remover</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('listar_livros') }}">Voltar</a>
+</body>
+</html>
